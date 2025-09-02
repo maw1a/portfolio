@@ -11,13 +11,27 @@
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
+    "indentStyle": "tab",
     "indentWidth": 2
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "recommended": true,
+        "noUnknownAtRules": "warn"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "fix": "unsafe",
+          "level": "warn",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["clsx", "cn", "cva"]
+          }
+        }
+      }
     },
     "domains": {
       "next": "recommended",
