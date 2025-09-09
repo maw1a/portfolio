@@ -1,6 +1,7 @@
 {
 	"name": "frontend",
 	"version": "0.1.0",
+	"homepage": "https://maw1a.github.io/portfolio/",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
@@ -9,7 +10,7 @@
 		"lint": "biome check",
 		"format": "biome format --write",
 		"story:dev": "storybook dev -p 6006",
-		"story:build": "storybook build",
+		"story:build": "storybook build && echo \"uistory.maw1a.com\" > storybook-static/CNAME",
 		"story:deploy": "gh-pages -d storybook-static"
 	},
 	"dependencies": {

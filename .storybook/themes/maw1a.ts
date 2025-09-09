@@ -5,7 +5,7 @@ export default create({
 
 	brandTitle: "UI Story By Maw1a",
 	brandUrl: "https://uistory.maw1a.com",
-	brandImage: "/uistory/logo.svg",
+	brandImage: "/portfolio/uistory/logo.svg",
 
 	fontBase: "Geist Mono, monospace",
 	fontCode: "Geist Mono, monospace",
