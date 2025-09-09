@@ -20,4 +20,7 @@ export default create({
 	inputBorder: "#272727",
 	inputTextColor: "#272727",
 	inputBorderRadius: 4,
+
+	appBg: "#f4f4f5",
+	buttonBg: "#e4e4e7",
 });
