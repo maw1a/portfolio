@@ -4,18 +4,18 @@ import { GoogleFontsDecorator } from "./decorators";
 import maw1a from "./themes/maw1a";
 
 const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-      docs: {
-        theme: maw1a,
-      },
-    },
-  },
-  decorators: [GoogleFontsDecorator],
+	parameters: {
+		controls: {
+			matchers: {
+				color: /(background|color)$/i,
+				date: /Date$/i,
+			},
+			docs: {
+				theme: maw1a,
+			},
+		},
+	},
+	decorators: [GoogleFontsDecorator],
 };
 
 export default preview;

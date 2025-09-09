@@ -7,7 +7,7 @@ const meta = {
 	title: "Components/Calendar",
 	component: Calendar,
 	render: ({ ...props }) => {
-	  const today = new Date()
+		const today = new Date();
 		const [date, setDate] = useState(today);
 		return (
 			<Calendar
