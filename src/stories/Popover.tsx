@@ -30,6 +30,7 @@ interface PopoverContentProps
 	align?: "center" | "start" | "end";
 	side?: "top" | "bottom" | "left" | "right";
 	sideOffset?: number;
+	alignOffset?: number;
 	children: React.ReactNode;
 }
 
@@ -38,6 +39,7 @@ Popover.Content = ({
 	align = "center",
 	side = "bottom",
 	sideOffset = 4,
+	alignOffset = 4,
 	render,
 	children,
 	...props
@@ -47,6 +49,7 @@ Popover.Content = ({
 			align={align}
 			side={side}
 			sideOffset={sideOffset}
+			alignOffset={alignOffset}
 			className=""
 		>
 			<PopoverPrimitive.Popup

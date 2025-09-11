@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import dayjs from "dayjs";
 import { useState } from "react";
 import { Calendar } from "./Calendar";
-import dayjs from "dayjs";
 
 const meta = {
 	title: "Components/Calendar",

@@ -5,7 +5,6 @@ import {
 	type FC,
 	Fragment,
 	type InputHTMLAttributes,
-	useEffect,
 	useId,
 	useMemo,
 	useState,
@@ -18,6 +17,8 @@ import {
 } from "react-icons/pi";
 import { cn } from "@/utils/helpers/cn";
 import { NumInput } from "./NumericInput";
+import { Popover } from "./Popover";
+import { Calendar } from "./Calendar";
 
 export interface DateTimePickerProps
 	extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> {
@@ -62,14 +63,7 @@ export const DateTimePicker: FC<DateTimePickerProps> = ({
 		() => dayjs(state.editable ? state.pvalue : state.value),
 		[state.pvalue, state.value, state.editable],
 	);
-	const [dateId, timeId] = useMemo(
-		() => [`${_id || uid}__date`, `${_id || uid}__time`],
-		[uid, _id],
-	);
-
-	useEffect(() => {
-		console.log({ date: date.toISOString() });
-	}, [date]);
+	const [dateId, timeId] = [`${_id || uid}__date`, `${_id || uid}__time`];
 
 	return (
 		<div
@@ -84,7 +78,7 @@ export const DateTimePicker: FC<DateTimePickerProps> = ({
 				<label
 					htmlFor={dateId}
 					className={cn(
-						"flex items-center h-full pl-3 bg-zinc-200 rounded-l-xl transition-all border border-zinc-300 focus-within:ring-2",
+						"flex items-center h-full pl-3 bg-zinc-100 rounded-l-xl transition-all border border-zinc-300 focus-within:ring-2",
 						state.editable
 							? "pr-3 rounded-r-xl shadow-md gap-1.5"
 							: "pr-2 rounded-r-none border-r-0 gap-0.5",
@@ -144,7 +138,41 @@ export const DateTimePicker: FC<DateTimePickerProps> = ({
 							state.editable ? "w-4" : "w-[1ch]",
 						)}
 					>
-						{state.editable ? <PiCalendarBlankBold className="size-4" /> : ","}
+						{state.editable ? (
+							<Popover>
+								<Popover.Trigger className="flex items-center w-full h-full">
+									<PiCalendarBlankBold className="size-4" />
+								</Popover.Trigger>
+								<Popover.Content
+									side="bottom"
+									sideOffset={18}
+									className={"p-0 w-fit shadow-md rounded-xl border-zinc-300"}
+								>
+									<Calendar
+										mode="single"
+										required
+										captionLayout="dropdown"
+										className="rounded-xl bg-zinc-100"
+										startMonth={minDate.toDate()}
+										endMonth={maxDate.toDate()}
+										selected={date.toDate()}
+										onSelect={(d) =>
+											setState((s) => ({
+												...s,
+												pvalue: date
+													.clone()
+													.set("year", d.getFullYear())
+													.set("month", d.getMonth())
+													.set("date", d.getDate())
+													.toDate(),
+											}))
+										}
+									/>
+								</Popover.Content>
+							</Popover>
+						) : (
+							","
+						)}
 					</div>
 				</label>
 				<input
@@ -159,7 +187,7 @@ export const DateTimePicker: FC<DateTimePickerProps> = ({
 				<label
 					htmlFor={timeId}
 					className={cn(
-						"flex items-center h-full gap-1.5 bg-zinc-200 transition-all border border-zinc-300 focus-within:ring-2",
+						"flex items-center h-full gap-1.5 bg-zinc-100 transition-all border border-zinc-300 focus-within:ring-2",
 						state.editable
 							? "px-3 rounded-xl shadow-md"
 							: "pr-2 rounded-none border-x-0",
@@ -239,7 +267,7 @@ export const DateTimePicker: FC<DateTimePickerProps> = ({
 			<button
 				type="button"
 				className={cn(
-					"p-2 pr-3 bg-zinc-200 rounded-r-xl transition-all border border-zinc-300 outline-none focus:ring-2",
+					"p-2 pr-3 bg-zinc-100 rounded-r-xl transition-all border border-zinc-300 outline-none focus:ring-2",
 					state.editable
 						? "rounded-l-xl pl-3 shadow-md"
 						: "rounded-l-none border-l-0",
